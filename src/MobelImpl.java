@@ -1,7 +1,10 @@
 public class MobelImpl extends Mobel {
 
-    public MobelImpl(String navn, double vekt, double pris) {
+    private String type;
+
+    public MobelImpl(String navn, String type, double vekt, double pris) {
         super(navn, vekt, pris);
+        this.type = type;
     }
 
     @Override

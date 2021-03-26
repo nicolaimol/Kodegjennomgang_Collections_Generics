@@ -1,28 +1,32 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class MobelRegister {
-    List<Mobel> mobelList;
-    List<Stol> stolList;
-    List<Bord> bordList;
+public class MobelRegister <T extends Mobel> {
+    List<T> mobelList;
 
     public MobelRegister() {
         this.mobelList = new ArrayList<>();
-        this.stolList = new ArrayList<>();
-        this.bordList = new ArrayList<>();
     }
 
+    public Mobel leggTil(T mobel) {
+        mobelList.add(mobel);
+        return mobel;
+    }
+
+    /*
     public Mobel leggTil(String navn, double vekt, double pris) {
-        Stol nyttMobel = new Stol(navn, vekt, pris);
-        stolList.add(nyttMobel);
+        Mobel nyttMobel = new Stol(navn, vekt, pris);
+        mobelList.add((T) nyttMobel);
         return nyttMobel;
     }
 
     public Mobel leggTil(String navn, double vekt, double pris, int antallBen) {
-        Bord bord = new Bord(navn, vekt, pris, antallBen);
-        bordList.add(bord);
+        Mobel bord = new Bord(navn, vekt, pris, antallBen);
+        mobelList.add(bord);
         return bord;
     }
+     */
+
 
     public Mobel hentMobel(int nummer) {
         for (Mobel mobel:mobelList) {
@@ -47,11 +51,12 @@ public class MobelRegister {
         }
     }
 
-    public void skrivUtBordEtterBen() {
-        bordList.sort(new BordComparatorBen());
-        for (Bord bord:bordList) {
-            System.out.println(bord);
-        }
+    public void sortere() {
+        mobelList.sort(new MobelComparatorNavn());
+    }
+
+    public void sorterBord() {
+        mobelList.sort(new BordComparatorBen());
     }
 }
 
